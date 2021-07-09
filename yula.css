@@ -1,0 +1,59 @@
+
+body {
+    background-color: rgb(247, 231, 231);
+    display: flex;
+}
+.reset {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    color: rgb(134, 134, 134);
+    font-weight: bold;
+    cursor: pointer;
+}
+.reset:hover {
+    color: tomato;
+}
+.container {
+    background-color: white;
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.container .title{
+    margin: 0;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 1px solid rgb(190, 190, 190);
+}
+.container .main {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.container .main .answer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+    width: 10%;
+    height: 60%;
+    border-radius: 5px;
+    background-color: #eee;
+}
+.quest {
+    font-weight: bold;
+}
+.input {
+    margin-top: 10px;
+}
+.zone {
+    width: 80px;
+    text-align: center;
+}

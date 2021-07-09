@@ -1,0 +1,11 @@
+http://opentutorials.org:3000/main?id=HTML&page=12
+
+protocol = http
+host(domain) = opentutorials.org
+port = 3000
+path = main
+query string = id=HTML&page=12
+
+query string의 시작은 ?로 시작하기로 약속
+값과 값은 &로 구분
+값의 이름과 값은 = 로 구분

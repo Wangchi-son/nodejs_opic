@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.9/brython.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.9/brython_stdlib.min.js">
+    </script>
+    <link rel="stylesheet" href="yula.css">
+    <meta charset="utf-8" />
+</head>
+
+<body onload="brython()">
+    <div id="sum" class="container">
+        <div class="title">더하기 문제</div>
+        <div class="main">
+            <div class="quiz">
+                <div class="quest">
+                    <span id="first"></span>
+                    <span>+</span>
+                    <span id="second"></span>
+                    <span>+</span>
+                    <span id="third"></span>
+                </div>
+                <div class="input">
+                    <input type="text" id="zone" class="zone" placeholder="정답 입력">
+                    <button id="collect">확인</button>
+                    <button id="reset" class="reset">↺</button>
+                </div>
+            </div>
+            <div id="q" class="answer">미제출</div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/python">
+    from browser import document, html, alert
+    import random
+
+    mulNum = 10
+
+    n1 = int(random.random()*mulNum)
+    n2 = int(random.random()*mulNum)
+    n3 = int(random.random()*mulNum)
+
+    def comeback(e):
+        global n1, n2, n3, mulNum
+        new1 = int(random.random()*mulNum)
+        new2 = int(random.random()*mulNum)
+        new3 = int(random.random()*mulNum)
+        document['first'].textContent = new1
+        document['second'].textContent = new2
+        document['third'].textContent = new3
+        n1 = new1
+        n2 = new2
+        n3 = new3
+        document['q'].style.backgroundColor = "rgb(190, 190, 190)"
+        document['q'].style.color = "black"
+        document['q'].textContent = "미제출"
+        document['zone'].value =""
+        
+
+    def click(e):
+        if int(document['zone'].value) == (n1+n2+n3):
+            document['q'].style.backgroundColor = "dodgerblue"
+            document['q'].style.color = "white"
+            document['q'].textContent = "정답!"
+        else:
+            document['q'].style.backgroundColor = "tomato"
+            document['q'].style.color = "white"
+            document['q'].textContent = "오답!"
+            
+
+    
+    document['first'] <= n1
+    document['second'] <= n2
+    document['third'] <= n3
+    document['collect'].bind("click", click)
+    document['reset'].bind("click", comeback)
+
+</script>
