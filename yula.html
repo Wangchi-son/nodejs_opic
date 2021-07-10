@@ -10,6 +10,9 @@
 </head>
 
 <body onload="brython()">
+    <div class="home"><a href="/index.html">home</a></div>
+
+    <!-- 더하기 -->
     <div id="sum" class="container">
         <div class="title">더하기 문제</div>
         <div class="main">
@@ -30,14 +33,43 @@
             <div id="q" class="answer">미제출</div>
         </div>
     </div>
+
+    <div id="average" class="container">
+        <div class="title">평균 문제<span> (소수점 한자리수까지 구하시오.)</span></div>
+        <div class="main">
+            <div class="quiz">
+                <div class="quest">
+                    <span id="a_first"></span>
+                    <span>+</span>
+                    <span id="a_second"></span>
+                    <span>+</span>
+                    <span id="a_third"></span>
+                    <span>+</span>
+                    <span id="a_fourth"></span>
+                    <span>+</span>
+                    <span id="a_fifth"></span>
+                    <span>+</span>
+                    <span id="a_sixth"></span>
+                    <span>의 평균값을 구하세요</span>
+                </div>
+                <div class="input">
+                    <input type="text" id="a_zone" class="zone" placeholder="정답 입력">
+                    <button id="a_collect">확인</button>
+                    <button id="a_reset" class="reset">↺</button>
+                </div>
+            </div>
+            <div id="a_q" class="answer">미제출</div>
+        </div>
+    </div>
 </body>
 
 </html>
+<!-- 더하기문제 -->
 <script type="text/python">
     from browser import document, html, alert
     import random
 
-    mulNum = 10
+    mulNum = 1000000
 
     n1 = int(random.random()*mulNum)
     n2 = int(random.random()*mulNum)
@@ -77,5 +109,68 @@
     document['third'] <= n3
     document['collect'].bind("click", click)
     document['reset'].bind("click", comeback)
+
+</script>
+<!-- 평균문제 -->
+<script type="text/python">
+    from browser import document, html, alert
+    import random
+
+    mulNum = 1000000
+
+    n1 = int(random.random()*mulNum)
+    n2 = int(random.random()*mulNum)
+    n3 = int(random.random()*mulNum)
+    n4 = int(random.random()*mulNum)
+    n5 = int(random.random()*mulNum)
+    n6 = int(random.random()*mulNum)
+
+    def a_comeback(e):
+        global n1, n2, n3, n4, n5, n6, mulNum
+        new1 = int(random.random()*mulNum)
+        new2 = int(random.random()*mulNum)
+        new3 = int(random.random()*mulNum)
+        new4 = int(random.random()*mulNum)
+        new5 = int(random.random()*mulNum)
+        new6 = int(random.random()*mulNum)
+        document['a_first'].textContent = new1
+        document['a_second'].textContent = new2
+        document['a_third'].textContent = new3
+        document['a_fourth'].textContent = new4
+        document['a_fifth'].textContent = new5
+        document['a_sixth'].textContent = new6
+        n1 = new1
+        n2 = new2
+        n3 = new3
+        n4 = new4
+        n5 = new5
+        n6 = new6
+        document['a_q'].style.backgroundColor = "rgb(190, 190, 190)"
+        document['a_q'].style.color = "black"
+        document['a_q'].textContent = "미제출"
+        document['a_zone'].value =""
+        
+
+    def a_click(e):
+        if float(document['a_zone'].value) == round(((n1+n2+n3+n4+n5+n6)/6),1):
+            document['a_q'].style.backgroundColor = "dodgerblue"
+            document['a_q'].style.color = "white"
+            document['a_q'].textContent = "정답!"
+        else:
+            document['a_q'].style.backgroundColor = "tomato"
+            document['a_q'].style.color = "white"
+            document['a_q'].textContent = "오답!"
+            print(round(((n1+n2+n3+n4+n5+n6)/6),1))
+            
+
+    
+    document['a_first'] <= n1
+    document['a_second'] <= n2
+    document['a_third'] <= n3
+    document['a_fourth'] <= n4
+    document['a_fifth'] <= n5
+    document['a_sixth'] <= n6
+    document['a_collect'].bind("click", a_click)
+    document['a_reset'].bind("click", a_comeback)
 
 </script>
